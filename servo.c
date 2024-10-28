@@ -8,7 +8,7 @@
 
 #include "servo.h"
 
-uint32_t PCLKxTIM(TIM_HandleTypeDef* ftim);
+uint32_t servo_PCLKxTIM(TIM_HandleTypeDef* ftim);
 
 servo_Result servo_Init(ts_servo* fservoh, TIM_HandleTypeDef* ftim, uint32_t channel, uint32_t u32pwMin,  uint32_t u32pwMax, uint16_t fu16angleMin,  uint16_t fu16angleMax )
 {
@@ -20,7 +20,7 @@ servo_Result servo_Init(ts_servo* fservoh, TIM_HandleTypeDef* ftim, uint32_t cha
 	}
 	else
 	{
-		if((ftim->Instance->PSC +1)*1000000 == PCLKxTIM(ftim))//force pwm resolution to 1µs
+		if((ftim->Instance->PSC +1)*1000000 == servo_PCLKxTIM(ftim))//force pwm resolution to 1µs
 		{
 			if(ftim->Instance->ARR +1 != 20000)//20ms period needed for servo
 			{
@@ -84,7 +84,7 @@ servo_Result servo_Set(ts_servo* fservoh,uint16_t value)
 	return eResult;
 }
 
-servo_Result servoMng_TestAmp(ts_servo* fservoh,uint32_t delay)
+servo_Result servo_TestAmp(ts_servo* fservoh,uint32_t delay)
 {
 	servo_Result eResult = SERVO_OK;
 	if(fservoh->status == servoInit)
@@ -103,7 +103,7 @@ servo_Result servoMng_TestAmp(ts_servo* fservoh,uint32_t delay)
 	return eResult;
 }
 
-servo_Result servoMng_SetAngle(ts_servo* fservoh,float angle)
+servo_Result servo_SetAngle(ts_servo* fservoh,float angle)
 {
 	servo_Result eResult = SERVO_OK;
 	uint16_t u16Cmd;
@@ -130,7 +130,7 @@ servo_Result servoMng_SetAngle(ts_servo* fservoh,float angle)
 
 
 
-uint32_t PCLKxTIM(TIM_HandleTypeDef* ftim)
+uint32_t servo_PCLKxTIM(TIM_HandleTypeDef* ftim)
 {
   /* Get PCLK1 frequency */
   uint32_t pclkx;

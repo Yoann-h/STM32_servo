@@ -32,8 +32,8 @@ typedef struct {
 
 servo_Result servo_Init(ts_servo* fservoh, TIM_HandleTypeDef* ftim, uint32_t channel, uint32_t u32pwMin,  uint32_t u32pwMax, uint16_t fu16angleMin,  uint16_t fu16angleMax );
 servo_Result servo_Set(ts_servo* fservoh,uint16_t value);
-servo_Result servoMng_TestAmp(ts_servo* fservoh,uint32_t delay);
-servo_Result servoMng_SetAngle(ts_servo* fservoh,float angle);
+servo_Result servo_TestAmp(ts_servo* fservoh,uint32_t delay);
+servo_Result servo_SetAngle(ts_servo* fservoh,float angle);
 
 
 
