@@ -8,6 +8,7 @@
 
 #include "servo.h"
 
+ts_servo servo;
 uint32_t servo_PCLKxTIM(TIM_HandleTypeDef* ftim);
 
 servo_Result servo_Init(ts_servo* fservoh, TIM_HandleTypeDef* ftim, uint32_t channel, uint32_t u32pwMin,  uint32_t u32pwMax, uint16_t fu16angleMin,  uint16_t fu16angleMax )
